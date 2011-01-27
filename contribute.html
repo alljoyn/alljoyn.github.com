@@ -1,0 +1,79 @@
+<title>Submitting contributions to the AllJoyn&#8482; Open Source Project</title>
+<span style='font-family:"Verdana","sans-serif"'>
+<h1>How to create a patch for the Alljoyn source and submit it to alljoyn.org</h1>
+
+<p>Below are instructions on how to generate a patch containing your software changes, and submit it to alljoyn.org via e-mail. If you are downloading the AllJoyn source for the first time, please see <a href="http://alljoyn.github.com">the project homepage</a>.</p>
+
+<h2>Ground rules for submitting AllJoyn patches</h2>
+<ol>
+<li>Register your name and e-mail address with alljoyn.org
+<ul><li>Send the patch from the same e-mail address you used to register when clicking through the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">contribution agreement</a> (CLA).</li>
+<li>Review the <a href="http://www.alljoyn.org/contribute">contribution guidelines</a></li>
+<li>Enter your registered name and e-mail address into  <span style="font-family:courier new;">repo</span> and  <span style="font-family:courier new;">git</span>. The "author" (name and e-mail address) in your git patches must match your registered name and address, i.e. the 'user.email' variable must contain the same email as the one used for the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">CLA</a>.</li></ul></li>
+<li>One e-mail message must contain one AllJoyn patch
+<ul><li>Each AllJoyn patch must be transmitted as a single e-mail message. Multiple git patches can be bundled into a single e-mail message and submitted as a single AllJoyn patch.</li>
+<li>Each AllJoyn patch should be self-contained. For example, if you have two separate patches that depend on each other to work, please make sure to bundle and submit as a single patch. If sent separately, you will run the risk of both patches being rejected - even if you sent both e-mails at the same time.</li>
+<li>Alljoyn.org cannot accept e-mail attachments. Git patches must be be sent as plain text in the body of the e-mail.</li></ul></li>
+<li>One git project at a time
+<ul><li>Each AllJoyn patch can affect only one AllJoyn git project. For example, you may not include git patches for both  <span style="font-family:courier new;">alljoyn_core</span> and  <span style="font-family:courier new;">alljoyn_java</span> in the same patch e-mail.</li></ul></li>
+<li>Save that workspace!
+<ul><li>E-mails can get lost; a patch may need to be reworked and re-submitted. Whenever you submit an AllJoyn patch, please save the working directory it came from and start a new working directory if needed.</li></ul></li>
+</ol>
+
+<h2>Create the AllJoyn patch and e-mail to alljoyn.org</h2>
+<strong>Note</strong>: You must send the email from the same e-mail address you registered when signing the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">CLA</a>.
+<pre><span style="font-family:courier new;"><blockquote>
+    cd &lt;alljoyn project&gt;
+    git format-patch --stdout github/master &gt; patch.file
+ </blockquote></span></pre>
+
+The following information needs to be added before the patch files in the body of the email. The easiest way to do this is to edit the patch file before mailing it.
+
+<ol>
+<li>PROJECT= the git project the patch applies to (<span style="font-family:courier new;">alljoyn_core</span>, for example).</li>
+<li>BRANCH= the <strong>git branch</strong> the patch applies to (for example, B01.08). This is an optional field, it can be omitted if the patch is for  <span style="font-family:courier new;">master</span>.</li>
+<li>TITLE= a one-line title for the patch.</li>
+<li>DESCRIPTION= a brief, multi-line description of what the patch is for, if it is related to other patches, and so on. Everything following the '=' until the separator described next is considered to be part of the description. i.e. do not include any of the items listed above after this one as they will not get handled correclty.</li>
+<li>A line consisting of three or more '---' characters.</li>
+</ol>
+An example edited patch file might look like the following:
+<pre> <span style="font-family:courier new;"> <blockquote>
+    PROJECT=alljoyn_java
+    BRANCH=master
+    TITLE=Support AllJoyn discovery on XYZ
+    DESCRIPTION=This patch fixes multiple problems
+    with the AllJoyn discovery protocol on XYZ devices.
+    --- 
+
+    From 6d8055078aeff93e7e9c665c1704def0cf4183ff Mon Sep 17 01:27:11 2011
+    From: Joe AllJoyn &lt;joe@alljoynlover.com&gt;
+    Date: Thu, 20 Jan 2011 15:58:37 -0800
+    Subject: [PATCH 1/2] add something simple 1
+
+    ---
+     SConscript |    2 ++
+     1 files changed, 2 insertions(+), 0 deletions(-)
+
+    diff --git a/SConscript b/SConscript
+    index cd8a8fb..223d0aa 100644
+    --- a/SConscript
+    +++ b/SConscript
+    @@ -13,6 +13,8 @@
+
+    (etc...)
+    </blockquote>
+ </span></pre>
+You can either edit the patch file and e-mail it directly...
+<pre> <span style="font-family:courier new;">    mail &lt; patch.file submissions@alljoyn.org
+ </span></pre>
+
+...or, use your favorite e-mail client:
+
+<ul>
+<li> set the message format to "plain text"
+<li> copy the entire edited patch file into your e-mail editor
+<li> hit send!
+</ul>
+
+<P><strong>Note:</strong> Make sure that your mail client doesn't insert any hard line wraps as that will break the patch.</P>
+</span>
