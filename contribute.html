@@ -31,7 +31,7 @@ The following information needs to be added before the patch files in the body o
 
 <ol>
 <li>PROJECT= the git project the patch applies to (<span style="font-family:courier new;">alljoyn_core</span>, for example).</li>
-<li>BRANCH= the <strong>git branch</strong> the patch applies to (for example, B01.08). This is an optional field, it can be omitted if the patch is for  <span style="font-family:courier new;">master</span>.</li>
+<li>BRANCH= the <strong>git branch</strong> the patch applies to (for example, <span style="font-family:courier new;">B01.08</span>). This is an optional field, it can be omitted if the patch is for <span style="font-family:courier new;">master</span>.</li>
 <li>TITLE= a one-line title for the patch.</li>
 <li>DESCRIPTION= a brief, multi-line description of what the patch is for, if it is related to other patches, and so on. Everything following the '=' until the separator described next is considered to be part of the description. i.e. do not include any of the items listed above after this one as they will not get handled correclty.</li>
 <li>A line consisting of three or more '---' characters.</li>
@@ -45,7 +45,7 @@ An example edited patch file might look like the following:
     with the AllJoyn discovery protocol on XYZ devices.
     --- 
 
-    From 6d8055078aeff93e7e9c665c1704def0cf4183ff Mon Sep 17 01:27:11 2011
+    From 6d8055078aeff93e7e9c665c1704def0cf4183ff Mon Sep 17 00:00:00 2001
     From: Joe AllJoyn &lt;joe@alljoynlover.com&gt;
     Date: Thu, 20 Jan 2011 15:58:37 -0800
     Subject: [PATCH 1/2] add something simple 1
