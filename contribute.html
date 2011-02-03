@@ -1,6 +1,6 @@
 <title>Submitting contributions to the AllJoyn&#8482; Open Source Project</title>
 <span style='font-family:"Verdana","sans-serif"'>
-<h1>How to create a patch for the Alljoyn source and submit it to alljoyn.org</h1>
+<h1><a href="index.html"><img src="img/ajn75.png" alt="AllJoyn Logo - "></a>How to create a patch for the Alljoyn source and submit it to alljoyn.org</h1>
 
 <p>Below are instructions on how to generate a patch containing your software changes, and submit it to alljoyn.org via e-mail. If you are downloading the AllJoyn source for the first time, please see <a href="http://alljoyn.github.com">the project homepage</a>.</p>
 
@@ -10,6 +10,7 @@
 <ul><li>Send the patch from the same e-mail address you used to register when clicking through the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">contribution agreement</a> (CLA).</li>
 <li>Review the <a href="http://www.alljoyn.org/contribute">contribution guidelines</a></li>
 <li>Enter your registered name and e-mail address into  <span style="font-family:courier new;">repo</span> and  <span style="font-family:courier new;">git</span>. The "author" (name and e-mail address) in your git patches must match your registered name and address, i.e. the 'user.email' variable must contain the same email as the one used for the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">CLA</a>.</li></ul></li>
+<li>Make sure that you are following the <a href="#code_guide">coding guidelines</a>.
 <li>One e-mail message must contain one AllJoyn patch
 <ul><li>Each AllJoyn patch must be transmitted as a single e-mail message. Multiple git patches can be bundled into a single e-mail message and submitted as a single AllJoyn patch.</li>
 <li>Each AllJoyn patch should be self-contained. For example, if you have two separate patches that depend on each other to work, please make sure to bundle and submit as a single patch. If sent separately, you will run the risk of both patches being rejected - even if you sent both e-mails at the same time.</li>
@@ -76,4 +77,31 @@ You can either edit the patch file and e-mail it directly...
 </ul>
 
 <P><strong>Note:</strong> Make sure that your mail client doesn't insert any hard line wraps as that will break the patch.</P>
+
+<h2><a id="code_guide">Coding Guidelines</a></h2>
+<p>We do require that you follow our style guidelines. For the most part this means following the style in the file(s) you are editing, however, we are enforcing our white space conventions. We are using the Uncrustify tool (version 0.57) to do so. There is a script that can be used to check and apply the white space rules.  The tool can be found at the path below:
+
+<p><span style="font-family:courier new;"> <blockquote>
+     build_core/tools/bin/whitespace.sh
+</blockquote></span>
+
+Typing <span style="font-family:courier new;">whitespace.sh help</span> yeilds the following.
+
+<blockquote>
+<p><strong>Purpose</strong>:
+<p>  Apply uncrustify to source files, recursively, from the present working directory.  Enables users to see which source files are not in compliance with the AllJoyn whitespace policy and fix them. All temporary uncrustify files are removed.
+<p>
+<p><strong>Usage</strong>:
+<p>  <span style="font-family:courier new;">whitespace.sh [check(default)|detail|fix|help] [alljoyn uncrustify cfg]</span>
+<p>
+<p><strong>Commands</strong>:
+<p>  <span style="font-family:courier new;">check -  </span>generate a list of files that do not comply (default)
+<p>  <span style="font-family:courier new;">detail - </span>generate a diff of each file that does not comply
+<p>  <span style="font-family:courier new;">fix -    </span>apply (modify) each file that does not comply
+<p>  <span style="font-family:courier new;">help -   </span>print this message
+<p>
+<p><strong>alljoyn uncrustify cfg</strong>:
+<p>  If the present working directory is the parent directory of the alljoyn repositories, or within the alljoyn repositories, then the script will attempt to locate the config file, which is found in <span style="font-family:courier new;">&lt;alljoyn project&gt;/build_core/tools/conf/ajuncrustify.cfg</span>, otherwise, the config file may be specified on the command line.
+</blockquote>
+
 </span>
