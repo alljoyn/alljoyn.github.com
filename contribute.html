@@ -1,11 +1,14 @@
-<title>Submitting contributions to the AllJoyn&#8482; Open Source Project</title>
+<title>Contribute to the AllJoyn&#8482; Open Source Project</title>
 <span style='font-family:"Verdana","sans-serif"'>
-<h1><a href="index.html"><img src="img/ajn75.png" alt="AllJoyn Logo - "></a>How to create a patch for the Alljoyn source and submit it to alljoyn.org</h1>
 
-<p>Below are instructions on how to generate a patch containing your software changes, and submit it to alljoyn.org via e-mail. If you are downloading the AllJoyn source for the first time, please see <a href="http://alljoyn.github.com">the project homepage</a>.</p>
+
+<h1><a href="index.html"><img border=0 src="img/ajn75.png" alt="AllJoyn Logo - "></a>Contribute to the Alljoyn&#8482; Source</h1>
+
+<p>Below are instructions on how to generate a patch containing your software changes, and submit it to alljoyn.org via e-mail.</p>
 
 <h2>Ground rules for submitting AllJoyn patches</h2>
 <ol>
+<li><a href="download-source.html">Download the source</a>
 <li>Register your name and e-mail address with alljoyn.org
 <ul><li>Send the patch from the same e-mail address you used to register when clicking through the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">contribution agreement</a> (CLA).</li>
 <li>Review the <a href="http://www.alljoyn.org/contribute">contribution guidelines</a></li>
@@ -23,10 +26,25 @@
 
 <h2>Create the AllJoyn patch and e-mail to alljoyn.org</h2>
 <strong>Note</strong>: You must send the email from the same e-mail address you registered when signing the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">CLA</a>.
-<pre><span style="font-family:courier new;"><blockquote>
-    cd &lt;alljoyn project&gt;
-    git format-patch --stdout github/master &gt; patch.file
- </blockquote></span></pre>
+<p>Once you have made and commited your changes in one or more
+  repositories, you should make sure that you have the latest version of
+  the code:
+<blockquote><span style="font-family:courier new;">
+      $ repo sync
+ </span></blockquote>
+<strong>Note</strong>: For repo sync conflicts, See "Recovering sync
+conflicts"
+in <a href="http://source.android.com/source/git-repo.html">Using Repo and
+Git</a>
+<p>Create the actual patch for each repository you have changes in.  The
+  first line below will show you which files in which repositoies have
+  changes.
+
+<blockquote><span style="font-family:courier new;">
+    $ repo status<br>
+    $ cd &lt;alljoyn project&gt;,<br>
+    $ git format-patch --stdout github/master &gt; patch.file
+ </span></blockquote>
 
 The following information needs to be added before the patch files in the body of the email. The easiest way to do this is to edit the patch file before mailing it.
 
@@ -85,23 +103,25 @@ You can either edit the patch file and e-mail it directly...
      build_core/tools/bin/whitespace.sh
 </blockquote></span>
 
-Typing <span style="font-family:courier new;">whitespace.sh help</span> yeilds the following.
+Typing <span style="font-family:courier new;">whitespace.sh help</span>
+  yields the following output:
 
-<blockquote>
 <p><strong>Purpose</strong>:
-<p>  Apply uncrustify to source files, recursively, from the present working directory.  Enables users to see which source files are not in compliance with the AllJoyn whitespace policy and fix them. All temporary uncrustify files are removed.
-<p>
+<blockquote> Apply uncrustify to source files, recursively, from the present working directory.  Enables users to see which source files are not in compliance with the AllJoyn whitespace policy and fix them. All temporary uncrustify files are removed.
+</blockquote>
 <p><strong>Usage</strong>:
-<p>  <span style="font-family:courier new;">whitespace.sh [check(default)|detail|fix|help] [alljoyn uncrustify cfg]</span>
-<p>
+<blockquote>
+  <span style="font-family:courier new;">whitespace.sh [check(default)|detail|fix|help] [alljoyn uncrustify cfg]</span>
+</blockquote>
 <p><strong>Commands</strong>:
-<p>  <span style="font-family:courier new;">check -  </span>generate a list of files that do not comply (default)
-<p>  <span style="font-family:courier new;">detail - </span>generate a diff of each file that does not comply
-<p>  <span style="font-family:courier new;">fix -    </span>apply (modify) each file that does not comply
-<p>  <span style="font-family:courier new;">help -   </span>print this message
-<p>
+<blockquote>
+  <span style="font-family:courier new;">check -  </span>generate a list of files that do not comply (default)
+<br>  <span style="font-family:courier new;">detail - </span>generate a diff of each file that does not comply
+<br>  <span style="font-family:courier new;">fix -    </span>apply (modify) each file that does not comply
+<br>  <span style="font-family:courier new;">help -   </span>print this message
+</blockquote>
 <p><strong>alljoyn uncrustify cfg</strong>:
-<p>  If the present working directory is the parent directory of the alljoyn repositories, or within the alljoyn repositories, then the script will attempt to locate the config file, which is found in <span style="font-family:courier new;">&lt;alljoyn project&gt;/build_core/tools/conf/ajuncrustify.cfg</span>, otherwise, the config file may be specified on the command line.
+<blockquote>  If the present working directory is the parent directory of the alljoyn repositories, or within the alljoyn repositories, then the script will attempt to locate the config file, which is found in <span style="font-family:courier new;">&lt;alljoyn project&gt;/build_core/tools/conf/ajuncrustify.cfg</span>, otherwise, the config file may be specified on the command line.
 </blockquote>
 
 </span>

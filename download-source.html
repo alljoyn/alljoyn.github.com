@@ -1,11 +1,26 @@
-<title>Get the AllJoyn&#8482; Source</title>
+<title>Download the AllJoyn&#8482; Source</title>
 <span style='font-family:"Verdana","sans-serif"'>
-<h1><a href="index.html"><img src="img/ajn75.png" alt="AllJoyn Logo - "></a>How To Download the AllJoyn Source</a></h1>
-<p>The AllJoyn source is currently composed of multiple git repositories and is being managed using the <a href="http://source.android.com/source/git-repo.html" target="_blank">repo</a> tool. These instructions describe how use repo to download a copy of the AllJoyn source code in either a <a href="#Linux">Linux</a> or <a href="#Windows">Windows</a> environment. You can also <a href="http://github.com/alljoyn">browse the repositories directly</a> if you choose, however we suggest using repo if you want to work with the code as that will ensure you get everything you need to <a hre="build.html">build it</a>. To learn how to submit source changes to the AllJoyn OSP, please see the <a href="contribute.html">contribution instructions</a>, and read the <a href="http://www.alljoyn.org/contribute">AllJoyn.org contribution guidelines</a>.</p>
+<h1><a href="index.html"><img border=0 src="img/ajn75.png" alt="AllJoyn Logo - "></a>Download the AllJoyn&#8482; Source</a></h1>
+<p>The AllJoyn source is currently composed of multiple git repositories
+  and is being managed using the
+  <a href="http://source.android.com/source/git-repo.html" target="_blank">
+    repo</a> tool. These instructions describe how use
+  repo to download a copy of the AllJoyn source code in either
+  a <a href="#Linux">Linux</a> or <a href="#Windows">Windows</a>
+  environment. You can also <a href="http://github.com/alljoyn">browse the
+    repositories directly</a> if you choose, however we suggest using repo
+  if you want to work with the code as that will ensure you get everything
+  you need to <a href="build.html">build</a> it. To learn how to submit
+  source changes to the AllJoyn OSP, please see
+  the <a href="contribute.html">contribution instructions</a>, and read
+  the <a href="http://www.alljoyn.org/contribute">AllJoyn.org contribution
+    guidelines</a>.
+<hr>
 <h2><a id="Linux">On Linux</h2>
 <h3>Login to a bash shell</h3>
 <h3>Make sure that Python and git are installed</h3>
-<p>We suggest that the Python version is 2.6 or greater and that the git version is 1.7 or greater. This can be checked as follows:</p>
+<p>We suggest that the Python version is 2.6 or greater and that the git
+  version is 1.7 or greater. This can be checked as follows:</p>
 
 <span style="font-family:courier new;">
 <blockquote>
@@ -14,7 +29,8 @@
 </blockquote></span>
 
 
-<p>If not, install or update them using your system pkg manager, or see your friendly sysadmin.</p>
+<p>If not, install or update them using your system pkg manager, or see
+  your friendly sysadmin.</p>
 <h3>Make sure repo's shell script is installed and in your PATH</h3>
 <p>This can be done by issuing the repo command:  </p>
 
@@ -23,7 +39,11 @@
   <p>$ repo </p></span>
 </blockquote>
 
-<p>If you get an error then choose a location you can write to and which is in your <span style="font-family:courier new;">PATH</span> (e.g. <span style="font-family:courier new;">$HOME/bin</span> or <span style="font-family:courier new;">/usr/local/bin</span>), and install repo there as follows: </p>
+<p>If you get an error then choose a location you can write to and which is
+  in your <span style="font-family:courier new;">PATH</span>
+  (e.g. <span style="font-family:courier new;">$HOME/bin</span>
+  or <span style="font-family:courier new;">/usr/local/bin</span>), and
+  install repo there as follows: </p> 
 
 <span style="font-family:courier new;">
 <blockquote>
@@ -38,8 +58,7 @@
 <blockquote>
   <p>  $ mkdir $HOME/alljoyn # or whatever directory name takes your fancy<br>
     $ cd $HOME/alljoyn<br>
-    $ repo init -u git://github.com/alljoyn/manifest.git
-  <br>
+    $ repo init -u git://github.com/alljoyn/manifest. <br>
     $ repo sync <br>
     $ repo start master --all 
   </p>
@@ -49,14 +68,27 @@
 <h3>Update the AllJoyn source in that location at any time...</h3>
 <p>... by running <span style="font-family:courier new;">repo sync</span> again.</p>
 
+<hr>
 <h2><a id="Windows">Using Cygwin on Windows</h2>
-<p>On Windows, we suggest using Cygwin 1.7. If you do not already have git and repo working in an existing Cygwin environment, we suggest installing a clean copy of Cygwin 1.7; even if you already have Cygwin installed. It will not hurt to install another copy of Cygwin in a different location to try out git and repo. Once they are working there, you can try installing them in your existing Cygwin environment. </p>
+<p>On Windows, we suggest using Cygwin 1.7. If you do not already have git
+  and repo working in an existing Cygwin environment, we suggest installing
+  a clean copy of Cygwin 1.7; even if you already have Cygwin installed. It
+  will not hurt to install another copy of Cygwin in a different location
+  to try out git and repo. Once they are working there, you can try
+  installing them in your existing Cygwin environment. </p>
+
 <h3><a name="cygwim" id="cygwim"></a>Install Cygwin-1.7 </h3>
-<p>Run <a href="http://cygwin.com/setup.exe" target="_blank">Cygwin setup.exe</a> from <a href="http://cygwin.com/" target="_blank">cygwin.com</a>. Take the defaults except where noted below:</p>
+<p>Run <a href="http://cygwin.com/setup.exe" target="_blank">Cygwin
+    setup.exe</a> from <a href="http://cygwin.com/"
+			  target="_blank">cygwin.com</a>. Take the defaults
+  except where noted below:</p> 
 <ul type="disc">
-  <li>Enter a new location      for the root directory, like <span style="font-family:courier new;">C:\AllJoyn\Cygwin\root</span> </li>
+  <li>Enter a new location for the root directory, like <span style="font-family:courier new;">C:\AllJoyn\Cygwin\root</span> </li>
   <li>Enter a new location      for package directory, like <span style="font-family:courier new;">C:\AllJoyn\Cygwin\pkg </span></li>
-  <li>Select Cygwin packages <span style="font-family:courier new;">git, python, curl,</span> and <span style="font-family:courier new;">rebase</span> for installation, in addition      to the default packages. <strong>Make sure your favorite editor is also      selected.</strong></li>
+  <li>Select Cygwin packages <span style="font-family:courier new;">git,
+  python, curl,</span> and <span style="font-family:courier
+  new;">rebase</span> for installation, in addition to the default
+  packages. <strong>Make sure your favorite editor is also selected.</strong></li>
   <li><strong>RECOMMENDED:</strong> un-check the boxes for Desktop and Start Menu shortcuts.</li>
 </ul>
 <h3><a name="shell" id="shell"></a>Install Repo's shell script</h3>
@@ -164,5 +196,4 @@ $ exit </p>
 <blockquote>
   <p>  repo: <a href="http://source.android.com/source/git-repo.html">http://source.android.com/source/git-repo.html</a></p>
 </blockquote>
-<hr>
 </span>
