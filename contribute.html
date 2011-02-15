@@ -1,127 +1,203 @@
-<title>Contribute to the AllJoyn&#8482; Open Source Project</title>
-<span style='font-family:"Verdana","sans-serif"'>
+<html>
+  <head>
+    <title>Contribute to the AllJoyn&#8482; Open Source Project</title>
+    <link type="text/css" rel="stylesheet" media="all" href="css/style.css">
+  </head>
+  <body>
+    <div id="header">
+      <div class="logo">
+        <a href="index.html"><img src="img/logo.png" alt="AllJoyn Logo - "></a>
+      </div> <!-- //.logo -->
+    </div> <!-- //#header -->
+    <div id="main">
+      <h1>Contribute to the Alljoyn&#8482; Source</h1>
+      
+      <p>Below are instructions on how to generate a patch containing your
+      software changes, and submit it to alljoyn.org via e-mail.</p>
+      
+      <h2>Ground rules for submitting AllJoyn patches</h2>
+      <ol>
+	<li><a href="download-source.html">Download the source</a>
+	<li>Register your name and e-mail address with alljoyn.org
+	  <ul><li>Send the patch from the same e-mail address you used to
+	  register when clicking through the
+	  <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">
+	    contribution agreement</a> (CLA).</li> 
+	    <li>Review the <a href="http://www.alljoyn.org/contribute">
+		contribution guidelines</a></li> 
+	    <li>Enter your registered name and e-mail address
+	    into  <span style="font-family:courier new;">repo</span>
+	    and  <span style="font-family:courier new;">git</span>. The
+	    "author" (name and e-mail address) in your git patches must
+	    match your registered name and address, i.e. the 'user.email'
+	    variable must contain the same email as the one used for the
+	      <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">
+		CLA</a>.</li></ul></li>
+	<li>Make sure that you are following the
+	  <a href="#code_guide">coding guidelines</a>.
+	<li>One e-mail message must contain one AllJoyn patch
+	  <ul><li>Each AllJoyn patch must be transmitted as a single e-mail
+	  message. Multiple git patches can be bundled into a single e-mail
+	  message and submitted as a single AllJoyn patch.</li>
+	    <li>Each AllJoyn patch should be self-contained. For example,
+	    if you have two separate patches that depend on each other to
+	    work, please make sure to bundle and submit as a single
+	    patch. If sent separately, you will run the risk of both
+	    patches being rejected - even if you sent both e-mails at the
+	    same time.</li>
+	    <li>Alljoyn.org cannot accept e-mail attachments. Git patches
+	    must be be sent as plain text in the body of the
+	    e-mail.</li></ul></li>
+	<li>One git project at a time
+	  <ul><li>Each AllJoyn patch can affect only one AllJoyn git
+	  project. For example, you may not include git patches for
+	  both <span style="font-family:courier new;">alljoyn_core</span>
+	  and <span style="font-family:courier new;">alljoyn_java</span> in
+	  the same patch e-mail.</li></ul></li>
+	<li>Save that workspace!
+	  <ul><li>E-mails can get lost; a patch may need to be reworked and
+	  re-submitted. Whenever you submit an AllJoyn patch, please save
+	  the working directory it came from and start a new working
+	  directory if needed.</li></ul></li>
+      </ol>
 
+      <h2>Create the AllJoyn patch and e-mail to alljoyn.org</h2>
+      <strong>Note</strong>: You must send the email from the same e-mail
+      address you registered when signing the
+      <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">CLA
+      </a>.
+      <p>Once you have made and committed your changes in one or more
+        repositories, you should make sure that you have the latest version
+        of the code:
+	<blockquote><span style="font-family:courier new;">
+            $ repo sync
+	</span></blockquote>
+	<strong>Note</strong>: For repo sync conflicts, See "Recovering sync
+	conflicts"
+	in <a href="http://source.android.com/source/git-repo.html">Using
+	Repo and git</a>
+      <p>Create the actual patch for each repository you have changes
+      in. The first line below will show you which files in which
+      repositories have changes.
 
-<h1><a href="index.html"><img border=0 src="img/ajn75.png" alt="AllJoyn Logo - "></a>Contribute to the Alljoyn&#8482; Source</h1>
+      <blockquote><span style="font-family:courier new;">
+          $ repo status<br>
+          $ cd &lt;alljoyn project&gt;,<br>
+          $ git format-patch --stdout github/master &gt; patch.file
+       </span></blockquote>
 
-<p>Below are instructions on how to generate a patch containing your software changes, and submit it to alljoyn.org via e-mail.</p>
+      The following information needs to be added before the patch files in
+      the body of the email. The easiest way to do this is to edit the
+      patch file before mailing it.
+      
+      <ol>
+	<li>PROJECT= the git project the patch applies to
+	(<span style="font-family:courier new;">alljoyn_core</span>, for
+	example).</li>
+	<li>BRANCH= the <strong>git branch</strong> the patch applies to
+	(for example, <span style="font-family:courier
+	new;">B01.08</span>). This is an optional field, it can be omitted
+	if the patch is for <span style="font-family:courier
+	new;">master</span>.</li>
+	<li>TITLE= a one-line title for the patch.</li>
+	<li>DESCRIPTION= a brief, multi-line description of what the patch
+	is for, if it is related to other patches, and so on. Everything
+	following the '=' until the separator described next is considered
+	to be part of the description. i.e. do not include any of the items
+	listed above after this one as they will not get handled
+	correctly.</li>
+	<li>A line consisting of three or more '---' characters.</li>
+      </ol>
+      An example edited patch file might look like the following:
+      <pre> <span style="font-family:courier new;">
+      <blockquote>
+        PROJECT=alljoyn_java
+        BRANCH=master
+        TITLE=Support AllJoyn discovery on XYZ
+        DESCRIPTION=This patch fixes multiple problems
+        with the AllJoyn discovery protocol on XYZ devices.
+        ---
 
-<h2>Ground rules for submitting AllJoyn patches</h2>
-<ol>
-<li><a href="download-source.html">Download the source</a>
-<li>Register your name and e-mail address with alljoyn.org
-<ul><li>Send the patch from the same e-mail address you used to register when clicking through the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">contribution agreement</a> (CLA).</li>
-<li>Review the <a href="http://www.alljoyn.org/contribute">contribution guidelines</a></li>
-<li>Enter your registered name and e-mail address into  <span style="font-family:courier new;">repo</span> and  <span style="font-family:courier new;">git</span>. The "author" (name and e-mail address) in your git patches must match your registered name and address, i.e. the 'user.email' variable must contain the same email as the one used for the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">CLA</a>.</li></ul></li>
-<li>Make sure that you are following the <a href="#code_guide">coding guidelines</a>.
-<li>One e-mail message must contain one AllJoyn patch
-<ul><li>Each AllJoyn patch must be transmitted as a single e-mail message. Multiple git patches can be bundled into a single e-mail message and submitted as a single AllJoyn patch.</li>
-<li>Each AllJoyn patch should be self-contained. For example, if you have two separate patches that depend on each other to work, please make sure to bundle and submit as a single patch. If sent separately, you will run the risk of both patches being rejected - even if you sent both e-mails at the same time.</li>
-<li>Alljoyn.org cannot accept e-mail attachments. Git patches must be be sent as plain text in the body of the e-mail.</li></ul></li>
-<li>One git project at a time
-<ul><li>Each AllJoyn patch can affect only one AllJoyn git project. For example, you may not include git patches for both  <span style="font-family:courier new;">alljoyn_core</span> and  <span style="font-family:courier new;">alljoyn_java</span> in the same patch e-mail.</li></ul></li>
-<li>Save that workspace!
-<ul><li>E-mails can get lost; a patch may need to be reworked and re-submitted. Whenever you submit an AllJoyn patch, please save the working directory it came from and start a new working directory if needed.</li></ul></li>
-</ol>
+        From 6d8055078aeff93e7e9c665c1704def0cf4183ff Mon Sep 17 00:00:00 2001
+        From: Joe AllJoyn &lt;joe@alljoynlover.com&gt;
+        Date: Thu, 20 Jan 2011 15:58:37 -0800
+        Subject: [PATCH 1/2] add something simple 1
+      
+        ---
+         SConscript | 2 ++
+         1 files changed, 2 insertions(+), 0 deletions(-)
+      
+        diff --git a/SConscript b/SConscript
+        index cd8a8fb..223d0aa 100644
+        --- a/SConscript
+        +++ b/SConscript
+        @@ -13,6 +13,8 @@
+      
+        (etc...)
+      </blockquote>
+      </span></pre>
+      You can either edit the patch file and e-mail it directly...
+      <pre> <span style="font-family:courier new;">
+	  mail &lt; patch.file submissions@alljoyn.org
+      </span></pre>
 
-<h2>Create the AllJoyn patch and e-mail to alljoyn.org</h2>
-<strong>Note</strong>: You must send the email from the same e-mail address you registered when signing the <a href="http://www.alljoyn.org/alljoyn-contribution-agreement">CLA</a>.
-<p>Once you have made and committed your changes in one or more
-  repositories, you should make sure that you have the latest version of
-  the code:
-<blockquote><span style="font-family:courier new;">
-      $ repo sync
- </span></blockquote>
-<strong>Note</strong>: For repo sync conflicts, See "Recovering sync
-conflicts"
-in <a href="http://source.android.com/source/git-repo.html">Using Repo and
-Git</a>
-<p>Create the actual patch for each repository you have changes in.  The
-  first line below will show you which files in which repositories have
-  changes.
+      ...or, use your favorite e-mail client:
 
-<blockquote><span style="font-family:courier new;">
-    $ repo status<br>
-    $ cd &lt;alljoyn project&gt;,<br>
-    $ git format-patch --stdout github/master &gt; patch.file
- </span></blockquote>
-
-The following information needs to be added before the patch files in the body of the email. The easiest way to do this is to edit the patch file before mailing it.
-
-<ol>
-<li>PROJECT= the git project the patch applies to (<span style="font-family:courier new;">alljoyn_core</span>, for example).</li>
-<li>BRANCH= the <strong>git branch</strong> the patch applies to (for example, <span style="font-family:courier new;">B01.08</span>). This is an optional field, it can be omitted if the patch is for <span style="font-family:courier new;">master</span>.</li>
-<li>TITLE= a one-line title for the patch.</li>
-<li>DESCRIPTION= a brief, multi-line description of what the patch is for, if it is related to other patches, and so on. Everything following the '=' until the separator described next is considered to be part of the description. i.e. do not include any of the items listed above after this one as they will not get handled correctly.</li>
-<li>A line consisting of three or more '---' characters.</li>
-</ol>
-An example edited patch file might look like the following:
-<pre> <span style="font-family:courier new;"> <blockquote>
-    PROJECT=alljoyn_java
-    BRANCH=master
-    TITLE=Support AllJoyn discovery on XYZ
-    DESCRIPTION=This patch fixes multiple problems
-    with the AllJoyn discovery protocol on XYZ devices.
-    --- 
-
-    From 6d8055078aeff93e7e9c665c1704def0cf4183ff Mon Sep 17 00:00:00 2001
-    From: Joe AllJoyn &lt;joe@alljoynlover.com&gt;
-    Date: Thu, 20 Jan 2011 15:58:37 -0800
-    Subject: [PATCH 1/2] add something simple 1
-
-    ---
-     SConscript |    2 ++
-     1 files changed, 2 insertions(+), 0 deletions(-)
-
-    diff --git a/SConscript b/SConscript
-    index cd8a8fb..223d0aa 100644
-    --- a/SConscript
-    +++ b/SConscript
-    @@ -13,6 +13,8 @@
-
-    (etc...)
-    </blockquote>
- </span></pre>
-You can either edit the patch file and e-mail it directly...
-<pre> <span style="font-family:courier new;">    mail &lt; patch.file submissions@alljoyn.org
- </span></pre>
-
-...or, use your favorite e-mail client:
-
-<ul>
-<li> set the message format to "plain text"
-<li> copy the entire edited patch file into your e-mail editor
-<li> hit send!
-</ul>
-
-<P><strong>Note:</strong> Make sure that your mail client doesn't insert any hard line wraps as that will break the patch.</P>
-
-<h2><a id="code_guide">Coding Guidelines</a></h2>
-<p>We do require that you follow our style guidelines. For the most part this means following the style in the file(s) you are editing, however, we are enforcing our white space conventions. We are using the Uncrustify tool (version 0.57) to do so. There is a script that can be used to check and apply the white space rules.  The tool can be found at the path below:
-
-<p><span style="font-family:courier new;"> <blockquote>
-     build_core/tools/bin/whitespace.sh
-</blockquote></span>
-
-Typing <span style="font-family:courier new;">whitespace.sh help</span>
-  yields the following output:
-
-<p><strong>Purpose</strong>:
-<blockquote> Apply uncrustify to source files, recursively, from the present working directory.  Enables users to see which source files are not in compliance with the AllJoyn whitespace policy and fix them. All temporary uncrustify files are removed.
-</blockquote>
-<p><strong>Usage</strong>:
-<blockquote>
-  <span style="font-family:courier new;">whitespace.sh [check(default)|detail|fix|help] [alljoyn uncrustify cfg]</span>
-</blockquote>
-<p><strong>Commands</strong>:
-<blockquote>
-  <span style="font-family:courier new;">check -  </span>generate a list of files that do not comply (default)
-<br>  <span style="font-family:courier new;">detail - </span>generate a diff of each file that does not comply
-<br>  <span style="font-family:courier new;">fix -    </span>apply (modify) each file that does not comply
-<br>  <span style="font-family:courier new;">help -   </span>print this message
-</blockquote>
-<p><strong>alljoyn uncrustify cfg</strong>:
-<blockquote>  If the present working directory is the parent directory of the alljoyn repositories, or within the alljoyn repositories, then the script will attempt to locate the config file, which is found in <span style="font-family:courier new;">&lt;alljoyn project&gt;/build_core/tools/conf/ajuncrustify.cfg</span>, otherwise, the config file may be specified on the command line.
-</blockquote>
-
-</span>
+      <ul>
+      <li> set the message format to "plain text"
+      <li> copy the entire edited patch file into your e-mail editor
+      <li> hit send!
+      </ul>
+      
+      <P><strong>Note:</strong> Make sure that your mail client doesn't
+      insert any hard line wraps as that will break the patch.</P>
+      
+      <a id="code_guide"></a><h2>Coding Guidelines</h2>
+      <p>We do require that you follow our style guidelines. For the most
+      part this means following the style in the file(s) you are editing,
+      however, we are enforcing our white space conventions. We are using
+      the Uncrustify tool (version 0.57) to do so. There is a script that
+      can be used to check and apply the white space rules. The tool can be
+      found at the path below:
+      
+      <p><span style="font-family:courier new;"> <blockquote>
+	    &lt;alljoyn project&gt;/build_core/tools/bin/whitespace.sh
+      </blockquote></span>
+      
+      Typing <span style="font-family:courier new;">whitespace.sh help</span>
+        yields the following output:
+      
+      <p><strong>Purpose</strong>:
+      <blockquote>
+	Apply uncrustify to source files, recursively, from the present
+	working directory. Enables users to see which source files are not
+	in compliance with the AllJoyn whitespace policy and fix them. All
+	temporary uncrustify files are removed.
+      </blockquote>
+      <p><strong>Usage</strong>:
+      <blockquote>
+        <span style="font-family:courier new;">whitespace.sh [check(default)|detail|fix|help] [alljoyn uncrustify cfg]</span>
+      </blockquote>
+      <p><strong>Commands</strong>:
+      <blockquote>
+        <span style="font-family:courier new;">check - </span>
+	generate a list of files that do not comply (default)
+      <br> <span style="font-family:courier new;">detail - </span>
+      generate a diff of each file that does not comply
+      <br> <span style="font-family:courier new;">fix - </span>
+      apply (modify) each file that does not comply
+      <br> <span style="font-family:courier new;">help - </span>
+      print this message
+      </blockquote>
+      <p><strong>alljoyn uncrustify cfg</strong>:
+      <blockquote>
+	If the present working directory is the parent directory of the
+	alljoyn repositories, or within the alljoyn repositories, then the
+	script will attempt to locate the config file, which is found
+	in <span style="font-family:courier new;">&lt;alljoyn
+	project&gt;/build_core/tools/conf/ajuncrustify.cfg</span>,
+	otherwise, the config file may be specified on the command line.
+      </blockquote>
+    </div>
+  </body>
+</html>

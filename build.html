@@ -1,177 +1,203 @@
-<title>Build the AllJoyn&#8482; Source</title>
-<span style='font-family:"Verdana","sans-serif"'>
+<html>
+  <head>
+    <title>Build the AllJoyn&#8482; Source</title>
+    <link type="text/css" rel="stylesheet" media="all" href="css/style.css">
+  </head>
+  <body>
+    <div id="header">
+      <div class="logo">
+        <a href="index.html"><img src="img/logo.png" alt="AllJoyn Logo - "></a>
+      </div> <!-- //.logo -->
+    </div> <!-- //#header -->
+    <div id="main">
+      <h1>Build the AllJoyn&#8482; Source</h1>
+      
+      <p>The source code for AllJoyn is stored in a set of git projects
+      that can be cloned individually or as a group using
+      the <code>repo</code> tool. For detailed information on downloading
+      the source please look at the
+      <a href="http://alljoyn.github.com/download-source.html">instructions</a>
+      on the <a href="http://alljoyn.github.com">AllJoyn project</a> site
+      at github.com.</p>
 
-<h1><a href="index.html"><img border=0 src="img/ajn75.png" alt="AllJoyn Logo - "></a>Build the AllJoyn&#8482; Source</h1>
+      <p>AllJoyn is currently supported on the following target platforms:</p>
 
-<p>The source code for AllJoyn is stored in a set of git projects that can be
-cloned individually or as a group using the <code>repo</code> tool.  For detailed
-information on downloading the source please look at the <a href="http://alljoyn.github.com/download-source.html">instructions</a> on the <a href="http://alljoyn.github.com">AllJoyn project</a> site at github.com.</p>
-
-<p>AllJoyn is currently supported on the following target platforms:</p>
-
-<ul>
-<li>Ubuntu 9.10 through 10.10 (x86 and x86-64)</li>
-<li>Android 2.2 (Froyo+/NexusOne) (ARM)</li>
-</ul>
-
-<h1>Prerequisites</h1>
-
-<h2>General Prerequisites</h2>
-
-<p>The following tools will be required to get and build the source.</p>
-
-<ul>
-<li><a href="http://git.wiki.kernel.org/index.php/Installation">git</a> - Used for source code repository access</li>
-<li><a href="http://source.android.com/source/git-repo.html">repo</a> - A tool used to manage projects that consist of multiple git
-projects</li>
-<li><a href="http://www.scons.org/">SCons</a> - A software construction tool used to build AllJoyn</li>
-</ul>
-
-<h2>Linux Prerequisites</h2>
-
-<ul>
-<li><code>apt-get install libssl-dev</code></li>
-<li><code>apt-get install libbluetooth-dev</code></li>
-</ul>
-
-<h2>Android Prerequisites for Google baseline phones (G1, Nexus One, etc)</h2>
-
-<ul>
-<li><a href="http://android.git.kernel.org/">Android Source</a> - Required for building Android targets</li>
-<li><a href="http://developer.android.com/sdk/index.html">Android SDK</a> - Required for installing Android targets</li>
-<li><a href="http://developer.android.com/sdk/ndk/index.html">Android NDK</a> - Required for Android targets</li>
-<li><a href="http://www.eclipse.org/">Eclipse</a> - Used to build Java based AllJoyn demos for Android.</li>
-<li><a href="http://www.openssl.org/">OpenSSL Library</a> - instructions on how to get this are below.</li>
-</ul>
-
-<h2>Java Prerequisites</h2>
-
-<ul>
-<li>Java 5 sun-java5-jdk <a href="http://packages.ubuntu.com/dapper/sun-java5-jdk">Ubuntu package</a> (Note: Android, as of froyo,
-doesn't work well with Java 6)</li>
-<li>JUnit 3.8</li>
-</ul>
-
-<h2>Documentation Prerequisites</h2>
-
-<ul>
-<li><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> - Builds documentation from source code</li>
-<li><a href="http://www.graphviz.org/">Graphviz Dot</a> - Diagrams class hierarchies</li>
-<li><a href="http://www.tug.org/texlive">TeX Live</a> - LaTeX binaries and style sheets for Linux. (Needed if
-producing PDF output file in Linux.)</li>
-</ul>
-
-<h1>Building the source code</h1>
-
-<p>Use <code>scons</code> <code>-h</code> for some basic settings. In the examples below, any of the
-SCons variables' default values can be set as environment variables.  In
-order to build AllJoyn at the top level some <a href="#java">Java related variables need
-to be defined</a>, otherwise SCons will throw a difficult to figure out
-error.  If you wish to only build for C++ you can execute the commands
-below from the <code>alljoyn_core</code> directory, and the Java code will not be
-built.</p>
-
-<h2>Building for Ubuntu 10.10 (x86 target)</h2>
-
-<pre><code>    $ cd &lt;workspace&gt;
-    $ scons OS=linux CPU=x86
-</code></pre>
-
-<h2>Building for Ubuntu 10.10 (x86-64 target)</h2>
-
-<pre><code>    $ cd &lt;workspace&gt;
-    $ scons OS=linux CPU=x86-64
-</code></pre>
-
-<h2>Building for Android Froyo (2.2)</h2>
-
-<p>There is a document that explains in detail how to develop in AllJoyn for
-the Android NDK in <a href="http://www.alljoyn.org/docs-and-downloads">Docs &amp; Downloads</a> on <a href="http://www.alljoyn.org">AllJoyn.org</a>.
-High level instructions are below: download the OpenSSL header files and
-library as AllJoyn uses the OpenSSL crypto library for end-to-end
-encryption and authentication. The pre-built library is required to link
-AllJoyn applications. It can be downloaded from the Android device
-or emulator using the <code>adb</code> tool. Attach the device (or launch the Android
-emulator), then run the following commands on your development machine:</p>
-
-<pre><code>    $ cd &lt;aj_build_prod&gt;/lib
-    $ adb pull /system/lib/libcrypto.so libcrypto.so
-</code></pre>
-
-<p><strong>Note:</strong> <code>&lt;aj_build_prod&gt;</code> is the build products directory, an
-explaination of the structure of this directory tree is in the
-<a href="#build_prod">build products</a> section.</p>
-
-<p>In order to actually build you need to indicate where the NDK and the
-Android source is installed.  The paths to these are indicated using the
-<code>ANDRIOD_NDK</code>, and <code>ANDROID_SRC</code> variables.  An example is shown below.</p>
-
-<pre><code>    $ cd &lt;workspace&gt;
-    $ scons OS=android CPU=arm ANDROID_NDK=/usr/local/android-ndk ANDROID_SRC=/home/quic/android-platform
-</code></pre>
-
-<p><a id="variants"></p>
-
-<h2>Build variants</h2>
-
-<p>Building in "release mode" removes all symbol information and enables code
-optimization. To build in release mode, add the following build variable to
-your SCons command line:</p>
-
-<pre><code>    VARIANT=release
-</code></pre>
-
-<p>If the variable is not defined the default configuration is to build the
-debug variant.</p>
-
-<p><a id="java"></p>
-
-<h2>Java Support</h2>
-
-<p>The AllJoyn Java code is built automatically; however, in order to build it,
-SCons needs to know where the Java tools are located.  Set two environment
-variables to tell SCons where to find the tools:</p>
-
-<pre><code>    $ export JAVA_HOME=&lt;path_of_sun-java-5&gt;
-    $ export CLASSPATH=&lt;path_to_junit/junit4.jar&gt;
-</code></pre>
-
-<p>Here are the paths used on a typical Ubuntu installation:</p>
-
-<pre><code>    $ export JAVA_HOME="/usr/lib/jvm/java-5-sun"
-    $ export CLASSPATH="/usr/share/java/junit4.jar"
-</code></pre>
-
-<p>In some circumstances SCons may not be able to find the Java tools even when
-<code>JAVA_HOME</code> is explicitly specified.  This issue is described in this <a href="http://kdl-general.blogspot.com/2006/09/attributeerror-sconsenvironment.html">blog
-post</a>.  In short, the blog says that SCons will only search for
-sun-java-5 somewhere in <code>/usr/local/bin:/opt/bin:/bin:/usr/bin</code>. As a work
-around for this issue you can add a symlink to one of the searched folders,
-for example:</p>
-
-<pre><code>    /usr/bin/java -&gt; /opt/java/something/bin/java
-</code></pre>
-
-<p><strong>NOTE</strong>: currently the SCons scripts reqiure these variables to be 
-          defined to build any of the AllJoyn code.</p>
-
-<p><a id="build_prod"></p>
-
-<h2>Build Products</h2>
-
-<p>All of the build products are placed in the directory
-<code>build/&lt;OS&gt;/&lt;CPU&gt;/&lt;variant&gt;/dist/</code>; for example, for <code>OS=linux</code>, <code>CPU=x86</code>,
-<code>VARIANT=release</code> would result in the build products being in the
-<code>build/linux/x86/release/dist/</code> directory.  If <code>VARIANT</code> is not defined,
-then the <code>release</code> in the path would be replaced by <code>debug</code>.</p>
-
-<p>A description of the build products themselves can be found in the
-README.TXT file in the build products directory.</p>
-
-<h2>More info on SCons</h2>
-
-<p>The <a href="http://www.scons.org/doc/HTML/scons-user.html">SCons User Guide</a> is a good place to learn about the SCons build
-system.</p>
-
-<p></span></p>
+      <ul>
+      <li>Ubuntu 9.10 through 10.10 (x86 and x86-64)</li>
+      <li>Android 2.2 (Froyo+/NexusOne) (ARM)</li>
+      </ul>
+      
+      <h1>Prerequisites</h1>
+      
+      <h2>General Prerequisites</h2>
+      
+      <p>The following tools will be required to get and build the source.</p>
+      
+      <ul>
+      <li><a href="http://git.wiki.kernel.org/index.php/Installation">git</a> - Used for source code repository access</li>
+      <li><a href="http://source.android.com/source/git-repo.html">repo</a> - A tool used to manage projects that consist of multiple git
+      projects</li>
+      <li><a href="http://www.scons.org/">SCons</a> - A software construction tool used to build AllJoyn</li>
+      </ul>
+      
+      <h2>Linux Prerequisites</h2>
+      
+      <ul>
+      <li><code>apt-get install libssl-dev</code></li>
+      <li><code>apt-get install libbluetooth-dev</code></li>
+      </ul>
+      
+      <h2>Android Prerequisites for Google baseline phones (G1, Nexus One, etc)</h2>
+      
+      <ul>
+      <li><a href="http://android.git.kernel.org/">Android Source</a> - Required for building Android targets</li>
+      <li><a href="http://developer.android.com/sdk/index.html">Android SDK</a> - Required for installing Android targets</li>
+      <li><a href="http://developer.android.com/sdk/ndk/index.html">Android NDK</a> - Required for Android targets</li>
+      <li><a href="http://www.eclipse.org/">Eclipse</a> - Used to build Java based AllJoyn demos for Android.</li>
+      <li><a href="http://www.openssl.org/">OpenSSL Library</a> - instructions on how to get this are below.</li>
+      </ul>
+      
+      <h2>Java Prerequisites</h2>
+      
+      <ul>
+      <li>Java 5 sun-java5-jdk <a href="http://packages.ubuntu.com/dapper/sun-java5-jdk">Ubuntu package</a> (Note: Android, as of froyo,
+      doesn't work well with Java 6)</li>
+      <li>JUnit 3.8</li>
+      </ul>
+      
+      <h2>Documentation Prerequisites</h2>
+      
+      <ul>
+      <li><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> - Builds documentation from source code</li>
+      <li><a href="http://www.graphviz.org/">Graphviz Dot</a> - Diagrams class hierarchies</li>
+      <li><a href="http://www.tug.org/texlive">TeX Live</a> - LaTeX binaries and style sheets for Linux. (Needed if
+      producing PDF output file in Linux.)</li>
+      </ul>
+      
+      <h1>Building the source code</h1>
+      
+      <p>Use <code>scons</code> <code>-h</code> for some basic settings. In
+      the examples below, any of the SCons variables' default values can be
+      set as environment variables. In order to build AllJoyn at the top
+      level some <a href="#java">Java related variables need to be
+      defined</a>, otherwise SCons will throw a difficult to figure out
+      error. If you wish to only build for C++ you can execute the commands
+      below from the <code>alljoyn_core</code> directory, and the Java code
+      will not be built.</p>
+      
+      <h2>Building for Ubuntu 10.10 (x86 target)</h2>
+      
+      <pre><code>
+	  $ cd &lt;workspace&gt;
+          $ scons OS=linux CPU=x86
+      </code></pre>
+      
+      <h2>Building for Ubuntu 10.10 (x86-64 target)</h2>
+      
+      <pre><code>
+	  $ cd &lt;workspace&gt;
+          $ scons OS=linux CPU=x86-64
+      </code></pre>
+      
+      <h2>Building for Android Froyo (2.2)</h2>
+      
+      <p>There is a document that explains in detail how to develop in
+      AllJoyn for the Android NDK
+      in <a href="http://www.alljoyn.org/docs-and-downloads">Docs &amp;
+      Downloads</a> on <a href="http://www.alljoyn.org">AllJoyn.org</a>.
+      High level instructions are below: download the OpenSSL header files
+      and library as AllJoyn uses the OpenSSL crypto library for end-to-end
+      encryption and authentication. The pre-built library is required to
+      link AllJoyn applications. It can be downloaded from the Android
+      device or emulator using the <code>adb</code> tool. Attach the device
+      (or launch the Android emulator), then run the following commands on
+      your development machine:</p>
+      
+      <pre><code>
+	  $ cd &lt;aj_build_prod&gt;/lib
+          $ adb pull /system/lib/libcrypto.so libcrypto.so
+      </code></pre>
+      
+      <p><strong>Note:</strong> <code>&lt;aj_build_prod&gt;</code> is the
+      build products directory, an explaination of the structure of this
+      directory tree is in the
+      <a href="#build_prod">build products</a> section.</p>
+      
+      <p>In order to actually build you need to indicate where the NDK and the
+      Android source is installed. The paths to these are indicated using the
+      <code>ANDRIOD_NDK</code>, and <code>ANDROID_SRC</code> variables. An
+      example is shown below.</p>
+      
+      <pre><code>
+	  $ cd &lt;workspace&gt;
+          $ scons OS=android CPU=arm ANDROID_NDK=/usr/local/android-ndk ANDROID_SRC=/home/quic/android-platform
+      </code></pre>
+      
+      <a id="variants"></a>     
+      <h2>Build variants</h2>
+      
+      <p>Building in "release mode" removes all symbol information and
+      enables code optimization. To build in release mode, add the
+      following build variable to your SCons command line: <code>
+      VARIANT=release</code>. If the variable is not defined the default
+      configuration is to build the debug variant.</p>
+      
+      <a id="java"></a>
+      
+      <h2>Java Support</h2>
+      
+      <p>The AllJoyn Java code is built automatically; however, in order to
+      build it, SCons needs to know where the Java tools are located. Set
+      two environment variables to tell SCons where to find the tools:</p>
+      
+      <pre><code>
+	  $ export JAVA_HOME=&lt;path_of_sun-java-5&gt;
+          $ export CLASSPATH=&lt;path_to_junit/junit4.jar&gt;
+      </code></pre>
+      
+      <p>Here are the paths used on a typical Ubuntu installation:</p>
+      
+      <pre><code>
+	  $ export JAVA_HOME="/usr/lib/jvm/java-5-sun"
+          $ export CLASSPATH="/usr/share/java/junit4.jar"
+      </code></pre>
+      
+      <p>In some circumstances SCons may not be able to find the Java tools
+      even when <code>JAVA_HOME</code> is explicitly specified. This issue
+      is described in this
+      <a href="http://kdl-general.blogspot.com/2006/09/attributeerror-sconsenvironment.html">blog
+      post</a>. In short, the blog says that SCons will only search for
+      sun-java-5 somewhere in
+      <code>/usr/local/bin:/opt/bin:/bin:/usr/bin</code>. As a work around
+      for this issue you can add a symlink to one of the searched folders,
+      for example:</p>
+      
+      <pre><code> /usr/bin/java -&gt; /opt/java/something/bin/java </code></pre>
+      
+      <p><strong>NOTE</strong>: currently the SCons scripts reqiure these variables to be
+                defined to build any of the AllJoyn code.</p>
+      
+      <a id="build_prod"></a>      
+      <h2>Build Products</h2>
+      
+      <p>All of the build products are placed in the directory
+      <code>build/&lt;OS&gt;/&lt;CPU&gt;/&lt;variant&gt;/dist/</code>; for
+      example, for <code>OS=linux</code>, <code>CPU=x86</code>,
+      <code>VARIANT=release</code> would result in the build products being
+      in the <code>build/linux/x86/release/dist/</code>
+      directory. If <code>VARIANT</code> is not defined, then
+      '<code>release</code>' in the path would be replaced by
+      '<code>debug</code>'.</p>
+      
+      <p>A description of the build products themselves can be found in the
+      README.TXT file in the build products directory.</p>
+      
+      <h2>More info on SCons</h2>
+      
+      <p>The <a href="http://www.scons.org/doc/HTML/scons-user.html">SCons
+      User Guide</a> is a good place to learn about the SCons build
+      system.</p>
+      
+      <p></span></p>
+      
 
