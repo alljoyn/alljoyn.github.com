@@ -85,13 +85,12 @@
       <hr>
 
       <h2><a id="Windows"></a>Using Cygwin on Windows</h2>
-      <p>On Windows, we suggest using Cygwin 1.7. If you do not already
-        have git and repo working in an existing Cygwin environment, we
-        suggest installing a clean copy of Cygwin 1.7; even if you already
-        have Cygwin installed. It will not hurt to install another copy of
-        Cygwin in a different location to try out git and repo. Once they
-        are working there, you can try installing them in your existing
-        Cygwin environment. </p>
+      <p>AllJoyn does not compile or run on Cygwin, but you can use git and
+        repo on Cygwin to download the AllJoyn source on a Windows machine.
+        Unless you already have git and repo working in an existing Cygwin
+        environment, we suggest installing a clean copy of Cygwin 1.7 in a
+        new location. Once git and repo are working there, you can try
+        installing them in an existing Cygwin environment. </p>
       
       <h3><a name="cygwim" id="cygwim"></a>Install Cygwin-1.7 </h3>
       <p>Run <a href="http://cygwin.com/setup.exe" target="_blank">Cygwin
@@ -218,15 +217,25 @@
         <li>Open a new bash shell window and re-try the above repo
         commands. You should not need to <strong>rebase</strong>
         again.</li>
+        <p></p>
+        <li>If <strong>rebaseall</strong> throws an error message like</li>
+      </ul>
+      <span style="font-family:courier new;"><blockquote>
+        <p>
+          FixImage (/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgcc_s_sjlj-1.dll) failed with last error = 13
+        </p>
+      </blockquote></span>
+      <ul>
+	</p>then please see the <a href="https://www.alljoyn.org/forums/developers/rebase-usage#comment-22">forum</a> for a fix.</p>
       </ul>
 
       <h3>Update AllJoyn source in that location at any time...</h3>
       <p>... by running<span style="font-family:courier new;"> repo
       sync </span>again.</p>
 
-      <h3>Remove temp/test Cygwin installation when finished</h3>
+      <h3>Removing the temporary/test Cygwin installation</h3>
       <p><strong>OPTIONAL:</strong> If you installed an additional,
-      temporary copy of Cygwin to test Git and Repo, you can remove it at
+      temporary copy of Cygwin to test git and repo, you can remove it at
       any time by removing the Cygwin root and package directories created
       at installation (C:\AllJoyn\Cygwin\root and C:\AllJoyn\Cygwin\pkg in
       the above example). Close any bash shell windows and remove the
