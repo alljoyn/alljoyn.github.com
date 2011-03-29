@@ -92,11 +92,11 @@
         new location. Once git and repo are working there, you can try
         installing them in an existing Cygwin environment. </p>
       
-      <h3><a name="cygwim" id="cygwim"></a>Install Cygwin-1.7 </h3>
+      <h3><a name="cygwin" id="cygwin"></a>Install Cygwin-1.7 </h3>
       <p>Run <a href="http://cygwin.com/setup.exe" target="_blank">Cygwin
           setup.exe</a> from <a href="http://cygwin.com/"
-      target="_blank">cygwin.com</a>. Take the defaults
-        except where noted below:</p>
+      target="_blank">cygwin.com</a>. On Windows 7, <strong>Run As Administrator.</strong>  
+        Take the defaults except where noted below:</p>
       <ul type="disc">
         <li>Enter a new location for the root directory, like
 	  <span style="font-family:courier new;">C:\AllJoyn\Cygwin\root
@@ -105,9 +105,17 @@
 	  <span style="font-family:courier new;">C:\AllJoyn\Cygwin\pkg
 	</span></li>
         <li>Select Cygwin packages <span style="font-family:courier new;">git, gnupg,
-        python, curl,</span> and <span style="font-family:courier new;">
-	rebase</span> for installation, in addition to the default packages.
-	<strong>Don't forget to select your favorite editor!</strong></li>
+        python, curl,</span> and <span style="font-family:courier new;">rebase</span>
+        for installation, in addition to the default packages.</li>
+      <ul type="disc">
+        <li><strong>TIP:</strong> In <strong>Select Packages</strong>, do not use the
+            <strong>Category</strong> view. Click "View" until it changes to <strong>Full</strong>. </li>
+        <li>Use the "Search" box to filter packages by name. To select a
+            package to install, click the "cycle" icon in column two. </li>
+        <li>To review your selections, clear the seach box and change to
+            <strong>Pending</strong> view. </li>
+	    <li><strong>Don't forget to install your favorite editor!</strong></li>
+      </ul>
         <li><strong>RECOMMENDED:</strong> un-check the boxes for Desktop
         and Start Menu shortcuts.</li>
       </ul>
