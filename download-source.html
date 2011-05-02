@@ -78,6 +78,24 @@
         </p>
       </blockquote></span>
 
+      <b>Note:</b> to check out a specific branch
+      add <span style="font-family:courier new;">-b
+      &lt<i>branch_name</i>&gt</span> to
+      the<span style="font-family:courier new;"> repo init</span> command
+      above. You will also need to replace
+      <span style="font-family:courier new;">master</span> in
+      the <span style="font-family:courier new;">repo start</span> command
+      with <span style="font-family:courier
+      new;">&lt<i>branch_name</i>&gt</span>. For example to get the code
+      for the experimental branch the repo commands would look like:<p>
+	<span style="font-family:courier new;">
+      <blockquote>
+        <p>$ repo init -u git://github.com/alljoyn/manifest.git -b
+        experimental<br>
+          $ repo sync <br>
+          $ repo start experimental --all
+      </blockquote></span>
+
       <h3>Update the AllJoyn source in that location at any time...</h3>
       <p>... by running <span style="font-family:courier new;">repo
       sync</span> again.</p>
@@ -197,7 +215,25 @@
         </p>
       </blockquote></span>
       
-      <p>If repo init throws an error message such as the following,</p>
+      <b>Note:</b> to check out a specific branch
+      add <span style="font-family:courier new;">-b
+      &lt<i>branch_name</i>&gt</span> to
+      the<span style="font-family:courier new;"> repo init</span> command
+      above. You will also need to replace
+      <span style="font-family:courier new;">master</span> in
+      the <span style="font-family:courier new;">repo start</span> command
+      with <span style="font-family:courier
+      new;">&lt<i>branch_name</i>&gt</span>. For example to get the code
+      for the experimental branch the repo commands would look like:<p>
+	<span style="font-family:courier new;">
+      <blockquote>
+        <p>$ repo init -u git://github.com/alljoyn/manifest.git -b
+        experimental<br>
+          $ repo sync <br>
+          $ repo start experimental --all
+      </blockquote></span>
+	
+      <p>If <span style="font-family:courier new;">repo init</span> throws an error message such as the following,</p>
       
       <span style="font-family:courier new;">
       <p>1 main python 2016 C:\AllJoyn\Cygwin\root\bin\python.exe: ***
@@ -226,7 +262,8 @@
         commands. You should not need to <strong>rebase</strong>
         again.</li>
         <p></p>
-        <li>If <strong>rebaseall</strong> throws an error message like</li>
+        <li>If <span style="font-family:courier new;">rebaseall</span>
+        throws an error message like</li>
       </ul>
       <span style="font-family:courier new;"><blockquote>
         <p>
