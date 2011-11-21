@@ -3,7 +3,6 @@ body {
   margin: 0;
   padding: 0;
   font-size: 12px;
-#  color: #808084;
   color: #363636;
   line-height: 150%;
 }
@@ -17,10 +16,12 @@ code {
   margin-left: auto;
   margin-right: auto;
 }
+
 #header {
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: #ebebeb;
 }
+
 #header .logo {
   background-image: url('../img/background.jpg');
   background-color: transparent;
@@ -28,6 +29,11 @@ code {
   background-position: 150px;
   height: 143px;
 }
+
+.logo img {
+  padding-top: 20px;
+}
+
 h1 {
   font-size: 24px;
   color: #42008b;
@@ -55,3 +61,4 @@ hr {
   border: 0;
   border-bottom: 1px solid #C5C5C5;
 }
+
