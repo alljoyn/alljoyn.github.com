@@ -1,0 +1,43 @@
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+language: go
+go:
+ - 1.7
+sudo: required
+services:
+ - docker
+env:
+    - TEST_TARGET=unit-test
+
+before_install:
+
+ - |
+   echo "phase:before_install"
+
+install:
+
+ - |
+   echo "phase:install"
+
+before_script:
+
+ - |
+   echo "phase:before_script"
+
+script:
+
+ - |
+   echo "phase:script"
+
+after_failure:
+
+ - |
+   echo "phase:after_failure"
+
+notifications:
+
+  slack: '...'
+  on_success: always
+  on_failure: always
